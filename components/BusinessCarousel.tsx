@@ -57,7 +57,7 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
                 <TrendingUp className="text-amber-500" size={20} />
             </div>
             <div>
-                <h2 className="text-2xl font-bold text-white tracking-tight">{t.title}</h2>
+                <h2 className="text-2xl font-bold text-white tracking-tight">Divulgue Seus Eventos</h2>
             </div>
         </div>
 
