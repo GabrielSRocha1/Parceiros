@@ -76,7 +76,7 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
             <img 
               src={currentItem.imageUrl}
               alt={isBanner ? 'Banner' : currentItem.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain md:object-cover bg-black"
               onError={(e) => {
                 console.error('Erro ao carregar imagem:', currentItem.imageUrl);
                 // Fallback para uma imagem padrão se houver erro
