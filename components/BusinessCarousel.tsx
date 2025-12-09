@@ -16,7 +16,7 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
   // Imagens da pasta public
   const bannerImages = [
     '/banner.png',
-    '/banner (1).png'
+    encodeURI('/banner (1).png') // URL encoded para espaços e parênteses
   ];
 
   // Filtrar apenas negócios que têm imagens válidas
