@@ -14,9 +14,10 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
   const t = TRANSLATIONS[language].carousel || { title: 'Tendencias' };
 
   // Imagens da pasta public
+  // Codificar corretamente o nome do arquivo com espaços e parênteses
   const bannerImages = [
     '/banner.png',
-    encodeURI('/banner (1).png') // URL encoded para espaços e parênteses
+    '/banner%20%281%29.png' // Espaço = %20, ( = %28, ) = %29
   ];
 
   // Filtrar apenas negócios que têm imagens válidas
@@ -72,14 +73,17 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
         <div className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden border border-zinc-800 group shadow-2xl shadow-black/50">
           
           {/* Main Image */}
-          <div 
-            className="absolute inset-0 transition-all duration-700 ease-in-out transform"
-            style={{ 
-                backgroundImage: `url(${currentItem.imageUrl})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-            }}
-          >
+          <div className="absolute inset-0 transition-all duration-700 ease-in-out transform">
+            <img 
+              src={currentItem.imageUrl}
+              alt={isBanner ? 'Banner' : currentItem.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                console.error('Erro ao carregar imagem:', currentItem.imageUrl);
+                // Fallback para uma imagem padrão se houver erro
+                (e.target as HTMLImageElement).src = '/banner.png';
+              }}
+            />
             {/* Gradient Overlay for Text Readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
           </div>
