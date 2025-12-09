@@ -14,10 +14,9 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
   const t = TRANSLATIONS[language].carousel || { title: 'Tendencias' };
 
   // Imagens da pasta public
-  // Codificar corretamente o nome do arquivo com espaços e parênteses
   const bannerImages = [
     '/banner.png',
-    '/banner%20%281%29.png' // Espaço = %20, ( = %28, ) = %29
+    '/banner-1.png'
   ];
 
   // Filtrar apenas negócios que têm imagens válidas
