@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, TrendingUp, MapPin } from 'lucide-react';
+import { ChevronLeft, ChevronRight, TrendingUp } from 'lucide-react';
 import { Business, Language } from '../types';
 import { TRANSLATIONS } from '../translations';
 
@@ -19,14 +19,8 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
     '/banner-1.png'
   ];
 
-  // Filtrar apenas negócios que têm imagens válidas
-  const featuredBusinesses = businesses.filter(b => b.imageUrl && b.imageUrl.length > 0).slice(0, 8);
-
-  // Combinar imagens dos banners com os negócios
-  const allItems = [
-    ...bannerImages.map(img => ({ type: 'banner', imageUrl: img })),
-    ...featuredBusinesses.map(b => ({ type: 'business', ...b }))
-  ];
+  // Apenas as imagens fornecidas (sem cards de negócios)
+  const allItems = bannerImages.map(img => ({ type: 'banner', imageUrl: img }));
 
   // Auto-play logic (8 seconds)
   useEffect(() => {
@@ -36,7 +30,7 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
       setCurrentIndex((prevIndex) => 
         prevIndex === allItems.length - 1 ? 0 : prevIndex + 1
       );
-    }, 8000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [allItems.length]);
@@ -52,7 +46,6 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
   if (allItems.length === 0) return null;
 
   const currentItem = allItems[currentIndex];
-  const isBanner = currentItem.type === 'banner';
 
   return (
     <section className="bg-black border-t border-zinc-900 relative">
@@ -75,7 +68,7 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
           <div className="absolute inset-0 transition-all duration-700 ease-in-out transform">
             <img 
               src={currentItem.imageUrl}
-              alt={isBanner ? 'Banner' : currentItem.name}
+              alt="Banner"
               className="w-full h-full object-contain md:object-cover bg-black"
               onError={(e) => {
                 console.error('Erro ao carregar imagem:', currentItem.imageUrl);
@@ -87,24 +80,7 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
           </div>
 
-          {/* Text Content Overlay - Only show for businesses */}
-          {!isBanner && 'category' in currentItem && (
-            <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full md:w-2/3 z-10">
-               <span className="inline-block px-3 py-1 bg-amber-500 text-black text-xs font-bold uppercase tracking-wider rounded-md mb-3">
-                  {currentItem.category}
-               </span>
-               <h3 className="text-3xl md:text-5xl font-extrabold text-white mb-2 leading-tight drop-shadow-lg">
-                  {currentItem.name}
-               </h3>
-               <p className="text-zinc-300 text-lg line-clamp-2 mb-4 drop-shadow-md">
-                  {currentItem.description}
-               </p>
-               <div className="flex items-center text-zinc-400 font-medium">
-                  <MapPin size={18} className="text-amber-500 mr-2" />
-                  {currentItem.city}, {currentItem.department}
-               </div>
-            </div>
-          )}
+          {/* Sem overlay de texto para banners */}
 
           {/* Controls (Visible on Hover or Mobile) */}
           <button 
