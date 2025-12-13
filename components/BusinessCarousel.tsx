@@ -11,6 +11,7 @@ interface BusinessCarouselProps {
 
 export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, language }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const t = TRANSLATIONS[language].carousel || { title: 'Tendencias' };
 
   // Imagens da pasta public
@@ -22,9 +23,9 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
   // Apenas as imagens fornecidas (sem cards de negócios)
   const allItems = bannerImages.map(img => ({ type: 'banner', imageUrl: img }));
 
-  // Auto-play logic (8 seconds)
+  // Auto-play logic (4 seconds) - pausa quando mouse está sobre o carrossel
   useEffect(() => {
-    if (allItems.length === 0) return;
+    if (allItems.length === 0 || isPaused) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => 
@@ -33,7 +34,7 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [allItems.length]);
+  }, [allItems.length, isPaused]);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev === allItems.length - 1 ? 0 : prev + 1));
@@ -62,7 +63,11 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
         </div>
 
         {/* Carousel Container */}
-        <div className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden border border-zinc-800 group shadow-2xl shadow-black/50">
+        <div 
+          className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden border border-zinc-800 group shadow-2xl shadow-black/50"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           
           {/* Main Image */}
           <div className="absolute inset-0 transition-all duration-700 ease-in-out transform">

@@ -258,19 +258,6 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onNavigate, onLogin, languag
                     </button>
                 </p>
             </div>
-            
-            {/* Social Login Divider */}
-            <div className="mt-6 pt-6 border-t border-zinc-800">
-                <p className="text-center text-xs text-zinc-600 mb-4">{t.or_continue}</p>
-                <div className="flex justify-center gap-4">
-                    <button className="p-2 rounded-full border border-zinc-700 bg-zinc-800 hover:bg-zinc-700 transition-colors">
-                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" />
-                    </button>
-                    <button className="p-2 rounded-full border border-zinc-700 bg-zinc-800 hover:bg-zinc-700 transition-colors">
-                        <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook" className="w-5 h-5" />
-                    </button>
-                </div>
-            </div>
 
         </div>
       </div>

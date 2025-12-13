@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Search, Facebook, Instagram, Twitter, Mail, MapPin } from 'lucide-react';
 import { DEPARTMENTS } from '../constants';
 import { Language } from '../types';
 import { TRANSLATIONS } from '../translations';
@@ -61,15 +61,11 @@ export const Footer: React.FC<FooterProps> = ({ language }) => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start">
                 <MapPin size={18} className="mr-2 text-amber-500 flex-shrink-0" />
-                <span>Avda. Santa Teresa, Asunción, Paraguay</span>
-              </li>
-              <li className="flex items-center">
-                <Phone size={18} className="mr-2 text-amber-500 flex-shrink-0" />
-                <span>+595 21 123 4567</span>
+                <span>Ciudad del Este/Paraguay</span>
               </li>
               <li className="flex items-center">
                 <Mail size={18} className="mr-2 text-amber-500 flex-shrink-0" />
-                <span>contacto@bodecoin.com.py</span>
+                <span>contato@parceiros.bodecoin.digital</span>
               </li>
             </ul>
           </div>
