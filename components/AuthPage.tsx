@@ -258,7 +258,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onNavigate, onLogin, languag
                     </button>
                 </p>
             </div>
-
+            
         </div>
       </div>
       

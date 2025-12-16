@@ -16,7 +16,7 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
 
   // Imagens da pasta public
   const bannerImages = [
-    '/banner.png',
+    '/natal%2016.9.png', // natal 16.9.png (nome com espaço, URL codificada)
     '/banner-1.png'
   ];
 
