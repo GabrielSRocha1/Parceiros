@@ -16,8 +16,9 @@ export const BusinessCarousel: React.FC<BusinessCarouselProps> = ({ businesses, 
 
   // Imagens da pasta public
   const bannerImages = [
-    '/natal%2016.9.png', // natal 16.9.png (nome com espaço, URL codificada)
-    '/banner-1.png'
+    '/WhatsApp%20Image%202026-01-19%20at%2014.27.29.jpeg',
+    '/WhatsApp%20Image%202026-01-19%20at%2014.27.29%20(1).jpeg',
+    '/WhatsApp%20Image%202026-01-19%20at%2014.27.29%20(2).jpeg'
   ];
 
   // Apenas as imagens fornecidas (sem cards de negócios)
